@@ -5,12 +5,13 @@
   "author": "Felinto <@felinto>",
   "license": "MIT",
   "scripts": {
-    "dev": "env-cmd -f .env nodemon --exec babel-node src"
+    "dev": "env-cmd -f .env nodemon --exec babel-node src --ignore sessions.json"
   },
   "dependencies": {
     "env-cmd": "^10.1.0",
     "telegraf": "^3.38.0",
-    "telegraf-callback-data": "^0.1.2"
+    "telegraf-callback-data": "^0.1.2",
+    "telegraf-session-local": "^1.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",

@@ -1,6 +1,6 @@
 import bot from "../bot";
-import session from "telegraf/session";
 import {
+  backMenu,
   pickOption,
   getNextQuestion,
   showFinalAnswer,
@@ -10,12 +10,12 @@ const get_HXL = (ctx, dest) => {
   getNextQuestion(ctx, dest);
 };
 
-bot.use(session());
-
 bot.action(pickOption.filter({}), (ctx) => {
   const { source, option, dest } = pickOption.parse(
     ctx.update.callback_query.data
   );
+
+  ctx.session.menu_path.push(dest);
 
   ctx.answerCbQuery();
   ctx.deleteMessage();
@@ -27,9 +27,20 @@ bot.action(pickOption.filter({}), (ctx) => {
   }
 });
 
+bot.action(backMenu.filter({}), (ctx) => {
+  ctx.session.menu_path.pop();
+  const { dest } = backMenu.parse(ctx.update.callback_query.data);
+
+  ctx.answerCbQuery();
+  ctx.deleteMessage();
+
+  get_HXL(ctx, dest);
+});
+
 export default (bot) => {
-  bot.command(["start", "help"], (ctx) => {
+  bot.command("start", (ctx) => {
     const starting_point = "top";
+    ctx.session.menu_path = [starting_point];
     get_HXL(ctx, starting_point);
   });
 };
