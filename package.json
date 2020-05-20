@@ -8,9 +8,9 @@
     "dev": "env-cmd -f .env nodemon --exec babel-node src"
   },
   "dependencies": {
-    "axios": "^0.19.2",
     "env-cmd": "^10.1.0",
-    "telegraf": "^3.38.0"
+    "telegraf": "^3.38.0",
+    "telegraf-callback-data": "^0.1.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
