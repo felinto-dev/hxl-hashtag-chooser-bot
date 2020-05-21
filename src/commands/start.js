@@ -5,6 +5,7 @@ import {
   getNextQuestion,
   showFinalAnswer,
 } from "./utils/inferences";
+import { newMenuEntry } from "./utils/session-data";
 
 const get_HXL = (ctx, dest) => {
   getNextQuestion(ctx, dest);
@@ -14,8 +15,7 @@ bot.action(pickOption.filter({}), (ctx) => {
   const { source, option, dest } = pickOption.parse(
     ctx.update.callback_query.data
   );
-
-  ctx.session.menu_path.push(dest);
+  newMenuEntry(ctx, source, option);
 
   ctx.answerCbQuery();
   ctx.deleteMessage();
@@ -28,7 +28,7 @@ bot.action(pickOption.filter({}), (ctx) => {
 });
 
 bot.action(backMenu.filter({}), (ctx) => {
-  ctx.session.menu_path.pop();
+  ctx.session.menu.pop();
   const { dest } = backMenu.parse(ctx.update.callback_query.data);
 
   ctx.answerCbQuery();
@@ -40,7 +40,7 @@ bot.action(backMenu.filter({}), (ctx) => {
 export default (bot) => {
   bot.command("start", (ctx) => {
     const starting_point = "top";
-    ctx.session.menu_path = [starting_point];
+    ctx.session.menu = [{ current: starting_point }];
     get_HXL(ctx, starting_point);
   });
 };

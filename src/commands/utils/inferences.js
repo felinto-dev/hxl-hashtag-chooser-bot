@@ -18,13 +18,14 @@ const getNextQuestion = (ctx, dest) => {
     ];
   });
 
-  if (ctx.update["callback_query"] && ctx.session.menu_path.length > 1) {
-    const source = ctx.session.menu_path[ctx.session.menu_path.length - 2];
+  if (ctx.update["callback_query"] && ctx.session.menu.length > 1) {
+    const source = ctx.session.menu[ctx.session.menu.length - 1].current;
+
     options.push([
       Markup.callbackButton(
         "⬅️ Back",
         backMenu.new({
-          dest: source,
+          dest: source || "top",
         })
       ),
     ]);
@@ -35,7 +36,7 @@ const getNextQuestion = (ctx, dest) => {
 };
 
 const showFinalAnswer = (ctx, dest) => {
-  ctx.reply(dest);
+  ctx.reply(ctx.session.menu[ctx.session.menu.length - 1].note);
 };
 
 export { backMenu, pickOption, getNextQuestion, showFinalAnswer };
