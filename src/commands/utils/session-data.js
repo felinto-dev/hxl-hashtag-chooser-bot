@@ -7,4 +7,23 @@ const newMenuEntry = (ctx, source, option) => {
   });
 };
 
-export { newMenuEntry };
+const getHashtag = (ctx) => {
+  const hashtagItem = ctx.session.menu.find((item) => {
+    return item.hashtag;
+  });
+  if (hashtagItem) {
+    return `#${hashtagItem.hashtag}`;
+  }
+};
+
+const hashtagCode = (ctx) => {
+  const code = [getHashtag(ctx)];
+  ctx.session.menu.forEach((item) => {
+    if (item.attribute) {
+      code.push(`+${item.attribute}`);
+    }
+  });
+  return code.join(" ");
+};
+
+export { newMenuEntry, getHashtag, hashtagCode };
