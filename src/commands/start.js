@@ -7,9 +7,19 @@ import {
 } from "./utils/inferences";
 import { newMenuEntry } from "./utils/session-data";
 
+const start_bot = (ctx) => {
+  const starting_point = "top";
+  ctx.session.menu = [{ current: starting_point }];
+  get_HXL(ctx, starting_point);
+};
+
 const get_HXL = (ctx, dest) => {
   getNextQuestion(ctx, dest);
 };
+
+bot.action("start", (ctx) => {
+  start_bot(ctx);
+});
 
 bot.action(pickOption.filter({}), (ctx) => {
   const { source, option, dest } = pickOption.parse(
@@ -23,7 +33,7 @@ bot.action(pickOption.filter({}), (ctx) => {
   if (dest !== "null") {
     get_HXL(ctx, dest);
   } else {
-    showFinalAnswer(ctx, dest);
+    showFinalAnswer(ctx, source);
   }
 });
 
@@ -39,8 +49,6 @@ bot.action(backMenu.filter({}), (ctx) => {
 
 export default (bot) => {
   bot.command("start", (ctx) => {
-    const starting_point = "top";
-    ctx.session.menu = [{ current: starting_point }];
-    get_HXL(ctx, starting_point);
+    start_bot(ctx);
   });
 };

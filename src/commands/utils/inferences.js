@@ -39,7 +39,7 @@ const getNextQuestion = (ctx, dest) => {
   });
 };
 
-const showFinalAnswer = (ctx, dest) => {
+const showFinalAnswer = (ctx, source) => {
   ctx.reply(
     `<b>Use this hashtag and attributes</b>
 
@@ -49,6 +49,17 @@ ${ctx.session.menu[ctx.session.menu.length - 1].note || ""}
 You are free to add more attributes, or to make up your own, if you need to make further distinctions.
 `,
     {
+      ...Markup.inlineKeyboard([
+        [
+          Markup.callbackButton(
+            "⬅️ Back",
+            backMenu.new({
+              dest: source || "top",
+            })
+          ),
+          Markup.callbackButton("🔎 Discover a new Hashtag", "start"),
+        ],
+      ]).extra(),
       parse_mode: "HTML",
     }
   );
