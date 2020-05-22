@@ -31,7 +31,11 @@ So far <code>${hashtagCode(ctx, session_id)}</code>`;
     }
   };
   return (
-    KB[dest].question + getPreText() + getPostText() + getHashtagCodeHTML()
+    "🤔 " +
+    KB[dest].question +
+    getPreText() +
+    getPostText() +
+    getHashtagCodeHTML()
   );
 };
 

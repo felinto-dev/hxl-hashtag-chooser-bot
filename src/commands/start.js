@@ -54,7 +54,7 @@ bot.action(backMenu.filter({}), (ctx) => {
 
 export default (bot) => {
   bot.command("start", async (ctx) => {
-    await ctx.reply(`👏👏👏 Welcome ${ctx.update.message.from.first_name}
+    await ctx.reply(`👋👋👋 Welcome ${ctx.update.message.from.first_name}
 Answer the questions below to generate your HXL tag!`);
     start_bot(ctx);
   });

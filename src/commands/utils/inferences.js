@@ -50,7 +50,7 @@ const getNextQuestion = (ctx, dest, session_id) => {
 
 const showFinalAnswer = (ctx, source, session_id) => {
   ctx.reply(
-    `<b>Use this hashtag and attributes</b>
+    `<b>👌 Use this hashtag and attributes</b>
 
 <code>${hashtagCode(ctx, session_id)}</code>
 
@@ -58,7 +58,7 @@ ${
   ctx.session[session_id].menu[ctx.session[session_id].menu.length - 1].note ||
   ""
 }
-You are free to add more attributes, or to make up your own, if you need to make further distinctions.
+✅ You are free to add more attributes, or to make up your own, if you need to make further distinctions.
 `,
     {
       ...Markup.inlineKeyboard([
