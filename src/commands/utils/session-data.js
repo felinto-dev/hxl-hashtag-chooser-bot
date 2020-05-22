@@ -1,14 +1,14 @@
 import KB from "../../data/hxl-knowledge-base.json";
 
-const newMenuEntry = (ctx, source, option) => {
-  ctx.session.menu.push({
+const newMenuEntry = (ctx, source, option, session_id) => {
+  ctx.session[session_id].menu.push({
     current: source,
     ...KB[source].options[option],
   });
 };
 
-const getHashtag = (ctx) => {
-  const hashtagItem = ctx.session.menu.find((item) => {
+const getHashtag = (ctx, session_id) => {
+  const hashtagItem = ctx.session[session_id].menu.find((item) => {
     return item.hashtag;
   });
   if (hashtagItem) {
@@ -16,9 +16,9 @@ const getHashtag = (ctx) => {
   }
 };
 
-const hashtagCode = (ctx) => {
-  const code = [getHashtag(ctx)];
-  ctx.session.menu.forEach((item) => {
+const hashtagCode = (ctx, session_id) => {
+  const code = [getHashtag(ctx, session_id)];
+  ctx.session[session_id].menu.forEach((item) => {
     if (item.attribute) {
       code.push(`+${item.attribute}`);
     }
@@ -26,4 +26,17 @@ const hashtagCode = (ctx) => {
   return code.join(" ");
 };
 
-export { newMenuEntry, getHashtag, hashtagCode };
+const upsertSession = (ctx, starting_point) => {
+  if (ctx.session.counter) {
+    ctx.session[ctx.session.counter + 1] = {
+      menu: [{ current: starting_point }],
+    };
+    ctx.session.counter++;
+  } else {
+    ctx.session.counter = 1;
+    ctx.session[ctx.session.counter] = { menu: [{ current: starting_point }] };
+  }
+  return ctx.session.counter;
+};
+
+export { newMenuEntry, getHashtag, hashtagCode, upsertSession };
