@@ -5,10 +5,11 @@
   "author": "Felinto <@felinto>",
   "license": "MIT",
   "scripts": {
-    "dev": "env-cmd -f .env nodemon --exec babel-node src --ignore sessions.json"
+    "start": "babel-node src",
+    "dev": "nodemon --exec babel-node src --ignore sessions.json"
   },
   "dependencies": {
-    "env-cmd": "^10.1.0",
+    "dotenv": "^8.2.0",
     "telegraf": "^3.38.0",
     "telegraf-callback-data": "^0.1.2",
     "telegraf-ratelimit": "^2.0.0",
