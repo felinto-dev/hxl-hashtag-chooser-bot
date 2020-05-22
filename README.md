@@ -9,12 +9,11 @@ The  [Humanitarian Exchange Language](http://hxlstandard.org/)  (HXL) is a simpl
 The latest chooser is available online at  
 [@HXL_hashtag_chooser_bot on Telegram](https://t.me/HXL_hashtag_chooser_bot)
 
-# Requirements
+# ⚠️Requirements
 -   NodeJS (Tested in version 12.16.1)
 -   Telegram BOT Token
 
-# Usage
-Clone this project
+# ✨Usage
 ```
 git clone [project URL here]
 cd project-folder
@@ -33,12 +32,21 @@ You can test the development environment with the nodemon
 ```
 npm run dev
 ```
+# 🐋 Docker Usage
+Access the folder where the files are and build the docker image.
+```
+docker build -t hxl-hashtag-chooser-bot .
+```
+Start the container with your Telegram BOT Token.
+```
+docker container run -d --restart unless-stopped --name hxl -e BOT_TELEGRAM_TOKEN=abcdefgh123456789 hxl-hashtag-chooser-bot
+```
 
-# Knowledge base
+# 📙 Knowledge base
 The knowledge base for the chooser is in the file **src/data/hxl-knowledge-base.json**. Instructions on updating it will come soon.
 
-# Contributions
+# 🤝Contributions
 This project was based on the [hxl-hashtag-chooser](https://github.com/HXLStandard/hxl-hashtag-chooser) done by [@davidmegginson](https://github.com/davidmegginson). I also thank [@fititnt](https://github.com/fititnt) for his tips and advice and for helping me in the elaboration of this project.
 
-# License
+# ⚖️ License
 This program is licensed under the GPL license. Derived works must handle the GPL license as well. If you don't agree, try a non-GPL alternative. A copy of the GPL license is included in the license.txt file. Use with good cheer.
