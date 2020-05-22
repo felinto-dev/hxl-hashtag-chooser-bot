@@ -7,6 +7,13 @@ const newMenuEntry = (ctx, source, option, session_id) => {
   });
 };
 
+const getUserPath = (ctx, session_id) => {
+  const user_path = ctx.session[session_id].menu.map((option) => {
+    return option.text || "Start";
+  });
+  return `${user_path.join(" » ")}`;
+};
+
 const getHashtag = (ctx, session_id) => {
   const hashtagItem = ctx.session[session_id].menu.find((item) => {
     return item.hashtag;
@@ -39,4 +46,19 @@ const upsertSession = (ctx, starting_point) => {
   return ctx.session.counter;
 };
 
-export { newMenuEntry, getHashtag, hashtagCode, upsertSession };
+const checkSessionAvailability = (ctx, session_id) => {
+  if (!ctx.session[session_id]) {
+    ctx.answerCbQuery("Sorry, this menu is no longer available :(");
+    return true;
+  }
+  return false;
+};
+
+export {
+  newMenuEntry,
+  getUserPath,
+  getHashtag,
+  hashtagCode,
+  upsertSession,
+  checkSessionAvailability,
+};

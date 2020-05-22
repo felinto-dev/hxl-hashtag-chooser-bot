@@ -1,7 +1,7 @@
 import KB from "../../data/hxl-knowledge-base.json";
 import { CallbackData } from "telegraf-callback-data";
 import Markup from "telegraf/markup";
-import { hashtagCode } from "./session-data";
+import { getUserPath, hashtagCode } from "./session-data";
 import { filterMenuOptions, getQuestionText } from "./questions";
 
 const backMenu = new CallbackData("backMenu", ["dest", "session_id"]);
@@ -50,7 +50,7 @@ const getNextQuestion = (ctx, dest, session_id) => {
 
 const showFinalAnswer = (ctx, source, session_id) => {
   ctx.reply(
-    `<b>👌 Use this hashtag and attributes</b>
+    `<b>💪 Use this hashtag and attributes</b>
 
 <code>${hashtagCode(ctx, session_id)}</code>
 
@@ -59,6 +59,9 @@ ${
   ""
 }
 ✅ You are free to add more attributes, or to make up your own, if you need to make further distinctions.
+
+<code>This hashtag was generated using the following options:
+${getUserPath(ctx, session_id)}</code>
 `,
     {
       ...Markup.inlineKeyboard([

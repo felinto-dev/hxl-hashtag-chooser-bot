@@ -5,7 +5,11 @@ import {
   getNextQuestion,
   showFinalAnswer,
 } from "./utils/inferences";
-import { newMenuEntry, upsertSession } from "./utils/session-data";
+import {
+  newMenuEntry,
+  upsertSession,
+  checkSessionAvailability,
+} from "./utils/session-data";
 
 const start_bot = (ctx) => {
   if (ctx.update.callback_query) {
@@ -30,6 +34,10 @@ bot.action(pickOption.filter({}), (ctx) => {
   const { source, option, dest, session_id } = pickOption.parse(
     ctx.update.callback_query.data
   );
+  if (checkSessionAvailability(ctx, session_id)) {
+    return;
+  }
+
   newMenuEntry(ctx, source, option, session_id);
 
   ctx.answerCbQuery();
@@ -42,8 +50,12 @@ bot.action(pickOption.filter({}), (ctx) => {
   }
 });
 
-bot.action(backMenu.filter({}), (ctx) => {
+bot.action(backMenu.filter({}), async (ctx) => {
   const { dest, session_id } = backMenu.parse(ctx.update.callback_query.data);
+  if (checkSessionAvailability(ctx, session_id)) {
+    return;
+  }
+
   ctx.session[session_id].menu.pop();
 
   ctx.answerCbQuery();
