@@ -11,6 +11,7 @@
     "env-cmd": "^10.1.0",
     "telegraf": "^3.38.0",
     "telegraf-callback-data": "^0.1.2",
+    "telegraf-ratelimit": "^2.0.0",
     "telegraf-session-local": "^1.0.2"
   },
   "devDependencies": {
