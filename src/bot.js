@@ -11,6 +11,6 @@ const limitConfig = {
 };
 bot.use(rateLimit(limitConfig));
 
-bot.use(new LocalSession().middleware());
+bot.use(new LocalSession({ database: "db/sessions.json" }).middleware());
 
 export default bot;

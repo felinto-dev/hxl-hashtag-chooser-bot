@@ -25,7 +25,7 @@ docker build -t hxl-hashtag-chooser-bot .
 ```
 Start the container with your Telegram BOT Token.
 ```
-docker container run -d --restart unless-stopped --name hxl -e BOT_TELEGRAM_TOKEN=abcdefgh123456789 hxl-hashtag-chooser-bot
+docker container run -d --restart unless-stopped --name hxl -e BOT_TELEGRAM_TOKEN=abcdefgh123456789 -v hxl-hashtag-chooser-data:/usr/src/app/db/ hxl-hashtag-chooser-bot
 ```
 
 # ✨Start from your local machine with Node.JS
