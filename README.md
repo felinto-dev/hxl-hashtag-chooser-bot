@@ -16,7 +16,7 @@ The latest chooser is available online at
 # 🐋 Docker Usage
 ## You just need to pass your Telegram BOT token as an environment variable.
 ```
-docker container run -d --restart unless-stopped --name hxl -e BOT_TELEGRAM_TOKEN=abcdefgh123456789 felintodev/hxl-hashtag-chooser-bot
+docker container run -d --restart unless-stopped --name hxl -e BOT_TELEGRAM_TOKEN=abcdefgh123456789 -v hxl-hashtag-chooser-data:/usr/src/app/db/ felintodev/hxl-hashtag-chooser-bot
 ```
 ## Build your own image
 Access the folder where the files are and build the docker image.
@@ -25,7 +25,7 @@ docker build -t hxl-hashtag-chooser-bot .
 ```
 Start the container with your Telegram BOT Token.
 ```
-docker container run -d --restart unless-stopped --name hxl -e BOT_TELEGRAM_TOKEN=abcdefgh123456789 -v hxl-hashtag-chooser-data:/usr/src/app/db/ hxl-hashtag-chooser-bot
+docker container run -d --restart unless-stopped --name hxl -e BOT_TELEGRAM_TOKEN=abcdefgh123456789 hxl-hashtag-chooser-bot
 ```
 
 # ✨Start from your local machine with Node.JS
