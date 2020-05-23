@@ -55,4 +55,4 @@ The knowledge base for the chooser is in the file **src/data/hxl-knowledge-base.
 This project was based on the [hxl-hashtag-chooser](https://github.com/HXLStandard/hxl-hashtag-chooser) done by [@davidmegginson](https://github.com/davidmegginson). I also thank [@fititnt](https://github.com/fititnt) for his tips and advice and for helping me in the elaboration of this project.
 
 # ⚖️ License
-This program is licensed under the GPL license. Derived works must handle the GPL license as well. If you don't agree, try a non-GPL alternative. A copy of the GPL license is included in the license.txt file. Use with good cheer.
+This program is licensed under the GPL license. Derived works must handle the GPL license as well. If you don't agree, try a non-GPL alternative. A copy of the GPL license is included in the license.txt file.
